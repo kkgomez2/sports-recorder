@@ -1,0 +1,163 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/red"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/made_fg" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/darkred"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/missed_fg" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/orange"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/made_3pt" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/darkorange"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/missed_3pt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/green"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/made_ft" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/darkgreen"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/missed_ft" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/blue"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/assist" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/darkblue"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/steal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/purple"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/block" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/darkpurple"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/rebound" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@android:color/white"
+            android:text="@string/end_quarter" />
+
+    </LinearLayout>
+</LinearLayout>

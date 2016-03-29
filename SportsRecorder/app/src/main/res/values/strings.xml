@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Sports Recorder</string>
+    <string name="made_fg">Made\nFG</string>
+    <string name="missed_fg">Missed\nFG</string>
+    <string name="made_3pt">Made\n3pt</string>
+    <string name="missed_3pt">Missed\n3pt</string>
+    <string name="block">Block</string>
+    <string name="assist">Assist</string>
+    <string name="steal">Steal</string>
+    <string name="made_ft">Made\nFT</string>
+    <string name="missed_ft">Missed\nFT</string>
+    <string name="rebound">Rebound</string>
+    <string name="end_quarter">End quarter</string>
 </resources>
