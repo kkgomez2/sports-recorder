@@ -3,7 +3,12 @@ package cs498.sportsrecorder;
 import android.graphics.Point;
 import android.util.Log;
 
+import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.PriorityQueue;
 
 public class GameData {
@@ -27,16 +32,17 @@ public class GameData {
 
     private static int MAX_QUARTERS = 10;
     private Point[] quarterScores;
-    private int currentQuarter;
 
+    // Constructor. Creates a new GameData object for writing to.
     public GameData(){
         initializeEmpty();
     }
 
-    public GameData(String savedGameFilename){
+    // Constructor. Creates a GameData object to read from. Takes in the string of the content of
+    // a save file.
+    public GameData(String savedData){
         initializeEmpty();
-
-        // TODO: Read in file.
+        load(savedData);
     }
 
     public void initializeEmpty(){
@@ -50,7 +56,6 @@ public class GameData {
             Point zero = new Point(0,0);
             quarterScores[i] = zero;
         }
-        currentQuarter = 0;
     }
 
     public void addMadeFreeThrow(){
@@ -144,22 +149,71 @@ public class GameData {
     }
 
     public void endQuarter(){
-        // TODO.
-        Log.d("Sports", getSummary());;
+        gameEvents[GameEvent.QUARTER_END.ordinal()] += 1;
+        // TODO: Save quarter scores.
+    }
+
+    public int getQuarter(){
+        return gameEvents[GameEvent.QUARTER_END.ordinal()];
     }
 
     public void undo(){
         // TODO.
     }
 
-    // Save the data to a file. Returns the filename.
-    public String save(){
-        return "FILE"; //TODO
+    // Returns a string that represents the internal data.
+    public String getSaveContent(){
+        String save = "";
+        // First game the game events.
+        for(int i = 0; i < gameEvents.length; i++){
+            save += gameEvents[i] + " ";
+        }
+
+        // Save the quarter scores.
+        for(int i = 0; i < MAX_QUARTERS; i++){
+            save += quarterScores[i].x + " " + quarterScores[i].y + " ";
+        }
+
+        // Save the timeline.
+        for(int i = 0; i < timeline.size(); i++){
+            save += timeline.get(i).ordinal() + " ";
+        }
+
+        return save;
     }
 
-    // Loads the data in 'filename' and fills the internal data structures.
-    private void load(String filename){
+    // Loads the data in from the given string.
+    private void load(String loadData){
+        String[] splitData = loadData.split(" ");
 
+        // Check if valid.
+        if (gameEvents.length + (2 * MAX_QUARTERS) > splitData.length){
+            Log.d("Sports", "ERROR: Load data was not long enough. Skipping. Load data: " + loadData);
+            return;
+        }
+
+        // Load the game events.
+        for(int i = 0; i < gameEvents.length; i++){
+            //save += gameEvents[i] + " ";
+            gameEvents[i] = Integer.parseInt(splitData[i]);
+        }
+
+        // Load the quarter scores.
+        for(int i = 0; i < MAX_QUARTERS; i++){
+            //save += quarterScores[i].x + " " + quarterScores[i].y + " ";
+            int index = gameEvents.length + 2*i;
+            quarterScores[i].x = Integer.parseInt(splitData[index]);
+            quarterScores[i].y = Integer.parseInt(splitData[index + 1]);
+        }
+
+        // Load the timeline.
+        int remaining = splitData.length - gameEvents.length - (2 * MAX_QUARTERS);
+        for(int i = 0; i < timeline.size(); i++){
+            //save += timeline.get(i).ordinal() + " ";
+            int index = gameEvents.length + (2 * MAX_QUARTERS) + i;
+            int ordinal = Integer.parseInt(splitData[index]);
+            timeline.set(i, GameEvent.values()[ordinal]);
+        }
     }
 
     // Gets a human-readable summary of the data.
