@@ -22,6 +22,7 @@
             android:layout_weight="1"
             android:layout_margin="4dp"
             android:background="@android:color/white"
+            android:onClick="endQuarter"
             android:text="@string/end_quarter" />
 
         <Button
@@ -30,6 +31,7 @@
             android:layout_weight="1"
             android:layout_margin="4dp"
             android:background="@android:color/white"
+            android:onClick="undo"
             android:text="@string/undo" />
 
     </LinearLayout>
@@ -48,6 +50,7 @@
             android:background="@color/red"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:onClick="addMadeTwoPoint"
             android:text="@string/made_fg" />
 
         <Button
@@ -58,6 +61,7 @@
             android:background="@color/darkred"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:onClick="addMissedTwoPoint"
             android:text="@string/missed_fg" />
 
     </LinearLayout>
@@ -76,6 +80,7 @@
             android:background="@color/orange"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:onClick="addMadeThreePoint"
             android:text="@string/made_3pt" />
 
         <Button
@@ -86,6 +91,7 @@
             android:background="@color/darkorange"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:onClick="addMissedThreePoint"
             android:text="@string/missed_3pt" />
     </LinearLayout>
 
@@ -103,6 +109,7 @@
             android:background="@color/green"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:onClick="addMadeFreeThrow"
             android:text="@string/made_ft" />
 
         <Button
@@ -113,6 +120,7 @@
             android:background="@color/darkgreen"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:onClick="addMissedFreeThrow"
             android:text="@string/missed_ft" />
     </LinearLayout>
 
@@ -130,6 +138,7 @@
             android:background="@color/blue"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:onClick="addAssist"
             android:text="@string/assist" />
 
         <Button
@@ -140,6 +149,7 @@
             android:background="@color/darkblue"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:onClick="addSteal"
             android:text="@string/steal" />
 
     </LinearLayout>
@@ -158,6 +168,7 @@
             android:background="@color/purple"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:onClick="addBlock"
             android:text="@string/block" />
 
         <Button
@@ -168,6 +179,7 @@
             android:background="@color/darkpurple"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:onClick="addRebound"
             android:text="@string/rebound" />
 
     </LinearLayout>
