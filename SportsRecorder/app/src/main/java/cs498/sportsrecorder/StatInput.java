@@ -1,6 +1,7 @@
 package cs498.sportsrecorder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,8 +65,8 @@ public class StatInput extends AppCompatActivity {
 
     public void endQuarter(View view){
         data.endQuarter();
-        if(data.getQuarter() > 4){
-            // Game is over, save the game.
+        if(data.getQuarter() > 3){
+            // Game is over (Past 4th quarter, zero based), save the game.
             SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy hh:mm", Locale.US);
             String filename = "Game on " + sdf.format(new Date());
             Log.d("Sports", "Saving to " + filename);
@@ -78,6 +79,11 @@ public class StatInput extends AppCompatActivity {
             } catch (Exception e){
                 e.printStackTrace();
             }
+
+            // Launch the Summary activity.
+            Intent intent = new Intent(this, Summary.class);
+            intent.putExtra(Summary.FILE_TO_LOAD, filename);
+            startActivity(intent);
         }
     }
 

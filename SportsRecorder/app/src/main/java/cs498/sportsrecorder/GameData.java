@@ -194,13 +194,11 @@ public class GameData {
 
         // Load the game events.
         for(int i = 0; i < gameEvents.length; i++){
-            //save += gameEvents[i] + " ";
             gameEvents[i] = Integer.parseInt(splitData[i]);
         }
 
         // Load the quarter scores.
         for(int i = 0; i < MAX_QUARTERS; i++){
-            //save += quarterScores[i].x + " " + quarterScores[i].y + " ";
             int index = gameEvents.length + 2*i;
             quarterScores[i].x = Integer.parseInt(splitData[index]);
             quarterScores[i].y = Integer.parseInt(splitData[index + 1]);
@@ -208,11 +206,10 @@ public class GameData {
 
         // Load the timeline.
         int remaining = splitData.length - gameEvents.length - (2 * MAX_QUARTERS);
-        for(int i = 0; i < timeline.size(); i++){
-            //save += timeline.get(i).ordinal() + " ";
+        for(int i = 0; i < remaining; i++){
             int index = gameEvents.length + (2 * MAX_QUARTERS) + i;
             int ordinal = Integer.parseInt(splitData[index]);
-            timeline.set(i, GameEvent.values()[ordinal]);
+            timeline.add(GameEvent.values()[ordinal]);
         }
     }
 
@@ -270,7 +267,7 @@ public class GameData {
             case TWO_PT_MISS:
                 return "Two Pointer Missed.";
             case THREE_PT_MADE:
-                return "Three Pointer Made";
+                return "Three Pointer Made.";
             case THREE_PT_MISS:
                 return "Three Pointer Missed.";
             case REBOUND:
