@@ -1,6 +1,7 @@
 package cs498.sportsrecorder;
 
 import android.graphics.Point;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
@@ -144,6 +145,7 @@ public class GameData {
 
     public void endQuarter(){
         // TODO.
+        Log.d("Sports", getSummary());;
     }
 
     public void undo(){
@@ -158,6 +160,40 @@ public class GameData {
     // Loads the data in 'filename' and fills the internal data structures.
     private void load(String filename){
 
+    }
+
+    // Gets a human-readable summary of the data.
+    public String getSummary(){
+        String ret = "Summary.\n \nStat Line:\n";
+        ret += getStatLine();
+        ret += " \nTimeline:\n";
+        String[] t = getTimeline();
+        for(int i = 0; i < t.length; i++){
+            ret += t[i] + "\n";
+        }
+        return ret;
+    }
+
+    // Returns the overall statistics as a stat line string.
+    public String getStatLine(){
+        int made = gameEvents[GameEvent.FT_MADE.ordinal()];
+        String freeString = "Free Throws: " + made + " / "  +
+                            (made + gameEvents[GameEvent.FT_MISS.ordinal()]);
+
+        made = gameEvents[GameEvent.TWO_PT_MADE.ordinal()];
+        String twoString = "Two Pointers: " + made + " / "  +
+                           (made + gameEvents[GameEvent.TWO_PT_MISS.ordinal()]);
+
+        made = gameEvents[GameEvent.THREE_PT_MADE.ordinal()];
+        String threeString = "Three Pointers: " + made + " / "  +
+                             (made + gameEvents[GameEvent.THREE_PT_MISS.ordinal()]);
+
+        String assist = "Assists: " + gameEvents[GameEvent.ASSIST.ordinal()];
+        String rebound = "Rebounds: " + gameEvents[GameEvent.REBOUND.ordinal()];
+        String block = "Blocks: " + gameEvents[GameEvent.BLOCK.ordinal()];
+        String steal = "Steals: " + gameEvents[GameEvent.STEAL.ordinal()];
+        return freeString + "\n" + twoString + "\n" + threeString + "\n" + assist + "\n" + rebound +
+                "\n" + block + "\n" + steal + "\n";
     }
 
     // Returns the timeline as an array of strings.

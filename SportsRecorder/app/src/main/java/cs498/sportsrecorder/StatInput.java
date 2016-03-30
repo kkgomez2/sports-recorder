@@ -23,7 +23,7 @@ public class StatInput extends AppCompatActivity {
     }
 
     public void addMadeTwoPoint(View view){
-        data.addMadeFreeThrow();
+        data.addMadeTwoPoint();
     }
 
     public void addMissedTwoPoint(View view){
