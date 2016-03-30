@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".StatInput" />
-        <activity android:name=".Summary"></activity>
+        <activity android:name=".Summary" />
+        <activity android:name=".LoadGameActivity" />
     </application>
 
 </manifest>
