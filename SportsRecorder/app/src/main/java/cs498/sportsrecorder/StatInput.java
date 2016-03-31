@@ -34,8 +34,12 @@ public class StatInput extends AppCompatActivity {
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_summary);
-            TextView textview = (TextView)findViewById(R.id.summary_text);
-            textview.setText(gameData.getSummary());
+            //TextView textview = (TextView)findViewById(R.id.summary_text);
+            //textview.setText(gameData.getSummary());
+            TextView textview = (TextView)findViewById(R.id.summary_stats);
+            textview.setText(gameData.getStatLine());
+            textview = (TextView)findViewById(R.id.summary_timeline);
+            textview.setText(gameData.getTimelineSummary());
 
         } else {
             setContentView(R.layout.activity_stat_input);
@@ -145,5 +149,10 @@ public class StatInput extends AppCompatActivity {
         gameData.undo();
         Toast.makeText(this, "Undid last action", Toast.LENGTH_SHORT).show();
         saveToFile();
+    }
+
+    // Share game summary by e-mail.
+    public void share(View view) {
+        gameData.share();
     }
 }

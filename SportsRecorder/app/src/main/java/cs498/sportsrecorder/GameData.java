@@ -214,11 +214,9 @@ public class GameData {
         }
     }
 
-    // Gets a human-readable summary of the data.
-    public String getSummary(){
-        String ret = "Summary.\n \nStat Line:\n";
-        ret += getStatLine();
-        ret += " \nTimeline:\n";
+    // Gets a human-readable version of the timeline.
+    public String getTimelineSummary() {
+        String ret = "Timeline:\n";
         String[] t = getTimeline();
         for(int i = 0; i < t.length; i++){
             ret += t[i] + "\n";
@@ -286,4 +284,8 @@ public class GameData {
         }
     }
 
+    // Share game summary by e-mail.
+    public void share() {
+        // TODO.
+    }
 }

@@ -1,10 +1,9 @@
 package cs498.sportsrecorder;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -39,8 +38,17 @@ public class Summary extends AppCompatActivity {
         gameData = new GameData(content);
 
         // Put the data in the textview for now. TODO: Switch to the fragments.
-        TextView textview = (TextView)findViewById(R.id.summary_text);
-        textview.setText(gameData.getSummary());
+        //TextView textview = (TextView)findViewById(R.id.summary_text);
+        //textview.setText(gameData.getSummary());
+        TextView textview = (TextView)findViewById(R.id.summary_stats);
+        textview.setText(gameData.getStatLine());
+        textview = (TextView)findViewById(R.id.summary_timeline);
+        textview.setText(gameData.getTimelineSummary());
 
+    }
+
+    // Share game summary by e-mail.
+    public void share(View view) {
+        gameData.share();
     }
 }
