@@ -37,9 +37,7 @@ public class Summary extends AppCompatActivity {
         }
         gameData = new GameData(content);
 
-        // Put the data in the textview for now. TODO: Switch to the fragments.
-        //TextView textview = (TextView)findViewById(R.id.summary_text);
-        //textview.setText(gameData.getSummary());
+        // Put the data in the textview.
         TextView textview = (TextView)findViewById(R.id.summary_stats);
         textview.setText(gameData.getStatLine());
         textview = (TextView)findViewById(R.id.summary_timeline);

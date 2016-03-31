@@ -159,7 +159,7 @@ public class GameData {
     }
 
     public void undo(){
-        // TODO.
+        gameEvents[timeline.remove(timeline.size() - 1).ordinal()]--;
     }
 
     // Returns a string that represents the internal data.

@@ -146,9 +146,11 @@ public class StatInput extends AppCompatActivity {
     }
 
     public void undo(View view){
-        gameData.undo();
-        Toast.makeText(this, "Undid last action", Toast.LENGTH_SHORT).show();
-        saveToFile();
+        if (gameData.getTimeline().length > 0) {
+            gameData.undo();
+            Toast.makeText(this, "Undid last action", Toast.LENGTH_SHORT).show();
+            saveToFile();
+        }
     }
 
     // Share game summary by e-mail.
