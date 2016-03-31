@@ -150,6 +150,7 @@ public class GameData {
 
     public void endQuarter(){
         gameEvents[GameEvent.QUARTER_END.ordinal()] += 1;
+        timeline.add(GameEvent.QUARTER_END);
         // TODO: Save quarter scores.
     }
 
