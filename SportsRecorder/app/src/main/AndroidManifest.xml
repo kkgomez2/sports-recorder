@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StatInput" />
+        <activity android:name=".StatInput"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity android:name=".Summary" />
         <activity android:name=".LoadGameActivity" />
     </application>
