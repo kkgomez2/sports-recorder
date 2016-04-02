@@ -1,6 +1,8 @@
 package cs498.sportsrecorder;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
@@ -106,6 +108,22 @@ public class StatInput extends AppCompatActivity {
     }
 
     public void endQuarter(View view){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("End quarter").
+        setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                recordQuarter();
+            }
+        }).
+        setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+            }
+        });
+        alert.show();
+    }
+
+    private void recordQuarter() {
         gameData.endQuarter();
         Toast.makeText(this, "End of quarter recorded", Toast.LENGTH_SHORT).show();
         saveToFile();
