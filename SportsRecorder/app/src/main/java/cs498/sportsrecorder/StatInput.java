@@ -17,7 +17,6 @@ import java.util.Locale;
 
 public class StatInput extends AppCompatActivity {
     private GameData gameData;
-    private String filename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,7 @@ public class StatInput extends AppCompatActivity {
         setContentView(R.layout.activity_stat_input);
         gameData = new GameData();
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy hh:mm", Locale.US);
-        filename = "Game on " + sdf.format(new Date());
+        gameData.setFilename("Game on " + sdf.format(new Date()));
     }
 
     @Override
@@ -111,32 +110,18 @@ public class StatInput extends AppCompatActivity {
         Toast.makeText(this, "End of quarter recorded", Toast.LENGTH_SHORT).show();
         saveToFile();
         if(gameData.getQuarter() > 3){
-            // Game is over (Past 4th quarter, zero based), save the game.
-            /*SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy hh:mm", Locale.US);
-            String filename = "Game on " + sdf.format(new Date());
-            Log.d("Sports", "Saving to " + filename);
-
-            try {
-                FileOutputStream out = openFileOutput(filename, Context.MODE_PRIVATE);
-                String saveContent = gameData.getSaveContent();
-                out.write(saveContent.getBytes());
-                out.close();
-            } catch (Exception e){
-                e.printStackTrace();
-            }*/
-
             // Launch the Summary activity.
             Intent intent = new Intent(this, Summary.class);
-            intent.putExtra(Summary.FILE_TO_LOAD, filename);
+            intent.putExtra(Summary.FILE_TO_LOAD, gameData.getFilename());
             startActivity(intent);
         }
     }
 
     private void saveToFile() {
-        Log.d("Sports", "Saving to " + filename);
+        Log.d("Sports", "Saving to " + gameData.getFilename());
 
         try {
-            FileOutputStream out = openFileOutput(filename, Context.MODE_PRIVATE);
+            FileOutputStream out = openFileOutput(gameData.getFilename(), Context.MODE_PRIVATE);
             String saveContent = gameData.getSaveContent();
             out.write(saveContent.getBytes());
             out.close();
@@ -154,7 +139,5 @@ public class StatInput extends AppCompatActivity {
     }
 
     // Share game summary by e-mail.
-    public void share(View view) {
-        gameData.share();
-    }
+    public void share(View view) {}
 }

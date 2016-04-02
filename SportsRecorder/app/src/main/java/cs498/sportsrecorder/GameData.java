@@ -1,15 +1,12 @@
 package cs498.sportsrecorder;
 
+import android.content.Intent;
 import android.graphics.Point;
+import android.net.Uri;
 import android.util.Log;
-
-import java.io.FileOutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.PriorityQueue;
+
+import static android.support.v4.app.ActivityCompat.startActivity;
 
 public class GameData {
     private enum GameEvent {
@@ -29,6 +26,7 @@ public class GameData {
     // Stores the events that occured.
     private ArrayList<GameEvent> timeline;
     private int[] gameEvents;
+    private String filename;
 
     private static int MAX_QUARTERS = 10;
     private Point[] quarterScores;
@@ -56,6 +54,14 @@ public class GameData {
             Point zero = new Point(0,0);
             quarterScores[i] = zero;
         }
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getFilename() {
+        return filename;
     }
 
     public void addMadeFreeThrow(){
@@ -282,10 +288,5 @@ public class GameData {
             default:
                 return "ERROR: Unknown event.";
         }
-    }
-
-    // Share game summary by e-mail.
-    public void share() {
-        // TODO.
     }
 }

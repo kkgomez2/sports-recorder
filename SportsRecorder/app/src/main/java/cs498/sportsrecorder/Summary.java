@@ -1,6 +1,7 @@
 package cs498.sportsrecorder;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,7 @@ public class Summary extends AppCompatActivity {
             e.printStackTrace();
         }
         gameData = new GameData(content);
+        gameData.setFilename(filename);
 
         // Put the data in the textview.
         TextView textview = (TextView)findViewById(R.id.summary_stats);
@@ -47,6 +49,13 @@ public class Summary extends AppCompatActivity {
 
     // Share game summary by e-mail.
     public void share(View view) {
-        gameData.share();
+        String[] recipients = {""};
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+        intent.putExtra(Intent.EXTRA_CC, recipients);
+        intent.putExtra(Intent.EXTRA_SUBJECT, gameData.getFilename());
+        intent.putExtra(Intent.EXTRA_TEXT, "SUMMARY\n\n" + gameData.getStatLine() + "\n" + gameData.getTimelineSummary());
+        startActivity(intent);
     }
 }
