@@ -49,6 +49,9 @@ public class StatInput extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {}
+
     public void addMadeFreeThrow(View view){
         gameData.addMadeFreeThrow();
         Toast.makeText(this, "Made free throw recorded", Toast.LENGTH_SHORT).show();
@@ -117,7 +120,15 @@ public class StatInput extends AppCompatActivity {
         setTitle("Enter current scores").
         setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                recordQuarter(((EditText)dialogView.findViewById(R.id.score1)).getText().toString(), ((EditText)dialogView.findViewById(R.id.score2)).getText().toString());
+                String score1 = ((EditText) dialogView.findViewById(R.id.score1)).getText().toString();
+                String score2 = ((EditText) dialogView.findViewById(R.id.score2)).getText().toString();
+                if (score1.trim().equals("")) {
+                    score1 = "0";
+                }
+                if (score2.trim().equals("")) {
+                    score2 = "0";
+                }
+                recordQuarter(score1, score2);
             }
         }).
         setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -153,10 +164,24 @@ public class StatInput extends AppCompatActivity {
 
     public void undo(View view){
         if (gameData.getTimeline().length > 0) {
-            gameData.undo();
-            Toast.makeText(this, "Undid last action", Toast.LENGTH_SHORT).show();
-            saveToFile();
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("Undo last action?").
+                setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    recordUndo();
+                }
+            }).
+            setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {}
+            });
+            alert.show();
         }
+    }
+
+    private void recordUndo() {
+        gameData.undo();
+        Toast.makeText(this, "Undid last action", Toast.LENGTH_SHORT).show();
+        saveToFile();
     }
 
     // Share game summary by e-mail.
