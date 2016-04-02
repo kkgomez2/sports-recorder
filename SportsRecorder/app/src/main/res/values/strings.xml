@@ -22,6 +22,8 @@
     <string name="rebound">Rebound</string>
     <string name="end_quarter">End quarter</string>
     <string name="undo">Undo</string>
+    <string name="score1">Team 1</string>
+    <string name="score2">Team 2</string>
 
     <!-- Summary -->
     <string name="share">Share</string>

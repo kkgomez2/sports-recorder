@@ -8,7 +8,9 @@ import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -109,22 +111,23 @@ public class StatInput extends AppCompatActivity {
 
     public void endQuarter(View view){
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("End quarter").
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_end_quarter, null);
+        alert.setView(dialogView).
+        setTitle("Enter current scores").
         setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                recordQuarter();
+                recordQuarter(((EditText)dialogView.findViewById(R.id.score1)).getText().toString(), ((EditText)dialogView.findViewById(R.id.score2)).getText().toString());
             }
         }).
         setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-
-            }
+            public void onClick(DialogInterface dialog, int whichButton) {}
         });
         alert.show();
     }
 
-    private void recordQuarter() {
-        gameData.endQuarter();
+    private void recordQuarter(String score1, String score2) {
+        gameData.endQuarter(score1, score2);
         Toast.makeText(this, "End of quarter recorded", Toast.LENGTH_SHORT).show();
         saveToFile();
         if(gameData.getQuarter() > 3){

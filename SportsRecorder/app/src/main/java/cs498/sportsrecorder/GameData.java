@@ -154,10 +154,10 @@ public class GameData {
         return gameEvents[GameEvent.BLOCK.ordinal()];
     }
 
-    public void endQuarter(){
+    public void endQuarter(String score1, String score2){
         gameEvents[GameEvent.QUARTER_END.ordinal()] += 1;
         timeline.add(GameEvent.QUARTER_END);
-        // TODO: Save quarter scores.
+        quarterScores[getQuarter() - 1] = new Point(Integer.parseInt(score1), Integer.parseInt(score2));
     }
 
     public int getQuarter(){
@@ -224,8 +224,15 @@ public class GameData {
     public String getTimelineSummary() {
         String ret = "Timeline:\n";
         String[] t = getTimeline();
+        int quarter = 0;
         for(int i = 0; i < t.length; i++){
-            ret += t[i] + "\n";
+            if (t[i].equals(getEventName(GameEvent.QUARTER_END))) {
+                ret += t[i] + " (" + quarterScores[quarter].x + "-" + quarterScores[quarter].y + ")\n";
+                quarter++;
+            }
+            else {
+                ret += t[i] + "\n";
+            }
         }
         return ret;
     }
